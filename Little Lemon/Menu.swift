@@ -12,15 +12,42 @@ struct Menu: View {
     @State var searchText = ""
     var body: some View {
         VStack {
-            Text("Little Lemon")
-            Text("Chicago")
-            Text("We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.")
+            HStack {
+                Text("Little Lemon").padding()
+                Spacer()
+            }
+            HStack {
+                VStack {
+                    HStack {
+                        Text("Chicago").padding()
+                        Spacer()
+                    }
+                    Text("We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.").padding()
+                }
+                Color.black.frame(width: 150, height: 150)
+            }
             TextField("Search menu", text: $searchText)
+            HStack {
+                Text("ORDER FOR DELIVERY!").padding()
+                Spacer()
+            }
+            HStack {
+                Button("Starter") {
+                }.padding()
+                Button("Mains") {
+                }.padding()
+                Button("Desserts") {
+                }.padding()
+                Button("Drinks") {
+                }.padding()
+                Spacer()
+            }
             FetchedObjects(predicate: buildPredicate(), sortDescriptors: buildSortDescriptors()) { (dishes: [Dish]) in
                 List {
                     ForEach(dishes) { dish in
                         HStack {
                             Text(dish.title! + " " + dish.price!)
+                            Spacer()
                             AsyncImage(url: URL(string: dish.image!)) {
                                 $0.resizable()
                             } placeholder: {

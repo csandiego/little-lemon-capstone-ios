@@ -19,7 +19,7 @@ struct UserProfile: View {
             Text(firstName)
             Text(lastName)
             Text(email)
-            Button("Logut") {
+            Button("Logout") {
                 UserDefaults.standard.set(false, forKey: isLoggedInKey)
                 self.presentation.wrappedValue.dismiss()
             }
